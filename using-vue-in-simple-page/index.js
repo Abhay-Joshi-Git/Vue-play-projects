@@ -1,10 +1,8 @@
 var productData = [
   {
-    id: 1,
     name: 'table'
   },
   {
-    id: 2,
     name: 'chair'
   }
 ];
@@ -17,9 +15,9 @@ Vue.component('product', {
     }
   },
   methods: {
-    deleteCurrentItem: function(id) {
+    deleteCurrentItem: function(product) {
       var prd = this.products.filter(function(p) {
-        return p.id !== id
+        return p.name !== product.name
       });
       this.products.splice(0);
       if (prd.length) {
@@ -40,7 +38,6 @@ document.querySelector('#addProduct').addEventListener('click', function() {
   var inputCntrl = document.querySelector('#newProduct');
   console.log('in click', inputCntrl.value);
   productData.push({
-    id: productData.length + 1,
     name: inputCntrl.value
   });
   inputCntrl.value = '';
