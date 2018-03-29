@@ -29,5 +29,8 @@ export default {
   mounted() {
     this.$store.dispatch(`$_events/${commandTypes.FETCH_EVENTS}`);
   },
+  beforeDestroy() {
+    this.$store.unregisterModule('$_events');
+  },
 };
 </script>
