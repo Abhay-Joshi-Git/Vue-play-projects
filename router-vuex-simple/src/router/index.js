@@ -1,21 +1,33 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Dashboard from '@/modules/dashboard/Dashboard';
-import eventsRoutes from '@/modules/events/routes';
 
 Vue.use(Router);
 
 const combineRoutes = () => {
-  let routes = [{
-    path: '/',
-    name: 'Dashboard',
-    component: Dashboard,
-  }];
-  routes = [
-    ...routes,
-    eventsRoutes,
+  const routes = [
+    {
+      path: '/',
+      name: 'Dashboard',
+      component: Dashboard,
+    },
+    {
+      path: '/events',
+      name: 'events',
+      component: () => import('@/modules/events/Events'),
+    },
+    {
+      path: '*',
+      name: '404',
+      component: {
+        render(h) {
+          return (
+            <div>Page Not Found</div>
+          );
+        },
+      },
+    },
   ];
-
   return routes;
 };
 
